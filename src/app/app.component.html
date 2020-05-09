@@ -1,0 +1,22 @@
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12 text-center header-intro">
+            <h1>News Tracker</h1>
+            <p>This is a personal project working with Angular 9.</p>
+            <p>The project is using the New York Times API to create different components on displaying the news. In each component there is a description of how each element has been built.</p>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-menu">
+    <button [ngClass]="{'btn-cat-active':showLatest === true}" class="btn btn-cat" (click)="showLatestNews();">Latest News</button>
+    <button [ngClass]="{'btn-cat-active':showMost === true}" class="btn btn-cat" (click)="showMostNews();">Most Popular</button>
+    <button [ngClass]="{'btn-cat-active':showMovies === true}" class="btn btn-cat" (click)="showMovieNews();">Movies Reviews</button>
+</div>
+
+<app-live-news *ngIf="showLatest == true"></app-live-news>
+<app-most-viewed *ngIf="showMost == true"></app-most-viewed>
+<app-movies *ngIf="showMovies == true"></app-movies>
+<app-footer></app-footer>

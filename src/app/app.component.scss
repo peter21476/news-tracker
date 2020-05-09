@@ -1,0 +1,53 @@
+@import '../styles.scss';
+
+.header-intro {
+    min-height:400px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #ededed;
+}
+
+.mobile-menu {
+    text-align: center;
+    margin-top:25px;
+    margin-bottom:25px;
+    display:none;
+}
+
+@media(max-width:768px) {
+    .mobile-menu {
+        display:block;
+        button {
+            margin-bottom:10px;
+        }
+
+    }
+}
+
+.btn-cat {
+    background-color:transparent;
+    border:2px solid $accent;
+    color: $accent;
+    margin-left:10px;
+    margin-right:10px;
+
+    &:hover {
+        background-color:$accent;
+        border:2px solid $accent;
+        color:white;
+    }
+
+    &:active {
+        background-color:$accent;
+        border:2px solid $accent;
+        color:white;
+    }
+}
+
+.btn-cat-active {
+    background-color:$accent;
+    border:2px solid $accent;
+    color:white;
+}

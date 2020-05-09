@@ -1,0 +1,58 @@
+<div class="container-fluid movies-section">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <h2>Movies Reviews</h2>
+              <div class="filter-wrapper">
+                  <span class="popular-label">Movie Title: </span>
+                  <input [(ngModel)]="selectedName" id="movie-title" type="text" />
+
+                  <mat-form-field>
+                    <mat-label class="date-label">From:</mat-label>
+                    <input [(ngModel)]="selectFrom" matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+
+
+                  <mat-form-field>
+                    <mat-label class="date-label">To:</mat-label>
+                    <input [(ngModel)]="selectTo" matInput [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+
+                  <button class="btn btn-success" (click)="getMovieByName();">Search</button>
+            </div>
+            <div *ngIf="showAlert == true" class="alert-message">
+
+              <div [innerHTML]="messageToBox.message" class="message-box">
+                  
+              </div>
+        
+            </div>
+            </div>
+          </div>
+                <div class="row row-eq-height-xs posts-wrapper">
+                  <div class="col-md-4 mb-30 cart-item" *ngFor="let item of response?.results" >
+                    <div class="card-content">
+                        <div class="card">
+                            <div *ngIf="item.mpaa_rating.length > 0" class="post-section">{{item.mpaa_rating}}</div>
+                            <div *ngIf="item.mpaa_rating.length == 0" class="post-section">Not Rated Yet</div>
+                            <div class="post-image">
+                            <div *ngIf="item.multimedia !== null" class="image-wrapper" style="background-image:url({{item.multimedia.src}})" alt=""></div>
+                            <div *ngIf="item.multimedia == null" class="image-wrapper" style="background-image:url(https://wiki.tripwireinteractive.com/images/4/47/Placeholder.png)" alt=""></div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                              <h5 class="card-title">{{item.display_title}}</h5>
+                              <p>Posted: {{item.publication_date | date:'fullDate'}}</p>
+                              <p class="card-text">{{item.summary_short}}</p>
+                              <a target="_blank" href="{{item.link.url}}" class="btn btn-news mt-auto">Read More...</a>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+    </div>

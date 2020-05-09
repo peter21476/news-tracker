@@ -1,0 +1,37 @@
+<div class="container live-news-section">
+    <div class="row">
+        <div class="col-md-12">
+          <p style="text-align: center; font-style: italic;">This section is using the New York Times API for the latest posts. There is a filter, a dropdown, which is being created dynamically based on the sections the API returns.</p>
+          <h2>Latest News</h2>
+            <div class="dropdown">
+              <form #f="ngForm">
+                <span>Select Section: </span><select aria-labelledby="dropdownMenuButton" [(ngModel)]="selectedValue" (change)="hideShowElements($event.target.value)" [ngModelOptions]="{standalone: true}">
+                  <option [ngValue]="null">Show All</option>
+                  <option *ngFor="let item of response?.results | filterUnique;" [ngValue]="item.section">{{item.section}}</option>
+                </select>
+                </form>
+            </div>
+        </div>
+      </div>
+            <div class="row row-eq-height-xs posts-wrapper">
+              <div class="col-md-4 mb-30 cart-item" *ngFor="let item of response?.results" >
+                <div class="card-content" *ngIf="selectedValue === item.section || selectedValue === null">
+                    <div class="card">
+                        <div class="post-section">{{item.section}}</div>
+                        <div class="post-image" *ngFor="let media of item.multimedia; let i=index">
+                        <div class="image-wrapper" *ngIf="i == 3" style="background-image:url({{media.url}})" alt=""></div>
+                        </div>
+                        <div *ngIf="item.multimedia == null" class="post-image">
+                          <div class="image-wrapper" style="background-image:url(https://wiki.tripwireinteractive.com/images/4/47/Placeholder.png)" alt=""></div>
+                          </div>
+                        <div class="card-body d-flex flex-column">
+                          <h5 class="card-title">{{item.title}}</h5>
+                          <p>Posted: {{item.created_date | date:'fullDate'}}</p>
+                          <p class="card-text">{{item.abstract}}</p>
+                          <a target="_blank" href="{{item.url}}" class="btn btn-news mt-auto">Read More...</a>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+</div>

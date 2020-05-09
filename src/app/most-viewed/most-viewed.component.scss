@@ -1,0 +1,65 @@
+@import '../../styles.scss';
+
+.filter-wrapper {
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:15px;
+    background:$newgreen;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.popular-label {
+    padding-right:10px;
+    color:white;
+}
+
+.pl-10 {
+    padding-left:10px;
+}
+
+select {
+    color:white;
+}
+
+option {
+    background:$newgreen;
+}
+
+.btn {
+    color:white;
+}
+
+.btn-success {
+    background:$accent;
+    border-color:$accent;
+    //border-radius:30%;
+    margin-left:20px;
+    padding:5px;
+    font-family:'NotoSerif', serif;
+
+    &:hover, &:active, &:focus {
+        background: lighten($color: $accent, $amount: 5);
+        border-color:$accent;
+    }
+}
+
+@media (max-width:991px) {
+
+    .filter-wrapper {   
+        text-align: center;
+        select {
+            display:block;
+            margin:0 auto;
+            text-align-last: center;
+            margin-bottom:20px;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .posts-wrapper {
+        max-height: 100%;
+        overflow: auto;
+    }
+}   

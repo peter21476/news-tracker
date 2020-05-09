@@ -1,0 +1,44 @@
+<div class="container-fluid most-viewed-section">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <h2>Most Popular</h2>
+          <div class="filter-wrapper">
+            <span class="popular-label">Choose Filter:</span>
+            <select [(ngModel)]="selectedFilter" id="filter-options">
+                <option value="viewed">Most Viewed Stories</option>
+                <option value="emailed">Most Emailed Stories</option>
+                <option value="shared">Most Shared Stories on Facebook</option>
+            </select>
+            <span class="popular-label pl-10">Choose Duration:</span>
+            <select [(ngModel)]="selectedDays" id="duration-option">
+                <option value="1">For the last day</option>
+                <option value="7">For the last 7 days</option>
+                <option value="30">For the last 30 days</option>
+            </select>
+            <button class="btn btn-success" (click)="makeApiCall()">Submit</button>
+        </div>
+        </div>
+      </div>
+            <div class="row row-eq-height-xs posts-wrapper">
+              <div class="col-md-4 mb-30 cart-item" *ngFor="let item of response?.results" >
+                <div class="card-content">
+                    <div class="card">
+                        <div class="post-section">{{item.section}}</div>
+                        <div class="post-image">
+                        <div class="image-wrapper" *ngIf="item.media.length > 0" style="background-image:url({{item.media[0]['media-metadata'][2]['url']}})" alt=""></div>
+                        <div class="image-wrapper" *ngIf="item.media.length == 0" style="background-image:url(https://wiki.tripwireinteractive.com/images/4/47/Placeholder.png)" alt=""></div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                          <h5 class="card-title">{{item.title}}</h5>
+                          <p>Posted: {{item.published_date | date:'fullDate'}}</p>
+                          <p class="card-text">{{item.abstract}}</p>
+                          <a target="_blank" href="{{item.url}}" class="btn btn-news mt-auto">Read More...</a>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+</div>
+</div>
